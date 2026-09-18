@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Revenue Prediction</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width:700px; margin:40px auto; }
+      label { display:block; margin-top:10px; }
+      input, select { width:100%; padding:8px; margin-top:4px; }
+      button { margin-top:12px; padding:10px 14px; }
+      .result { margin-top:20px; padding:12px; background:#f2f2f2; }
+      .error { margin-top:20px; padding:12px; background:#ffe6e6; color:#900; }
+    </style>
+  </head>
+  <body>
+    <h1>Predict Enterprise Revenue</h1>
+    <form method="post" action="/predict_form">
+      <label>Company type
+        <input name="company_type" placeholder="PUBLIC / PRIVATE / OTHER" />
+      </label>
+      <label>Employees
+        <input name="employees" placeholder="e.g. 50000" />
+      </label>
+      <label>Revenue year
+        <input name="revenue_year" placeholder="e.g. 2025" />
+      </label>
+      <label>Net income
+        <input name="net_income" placeholder="e.g. 100000000" />
+      </label>
+      <label>Net income year
+        <input name="net_income_year" placeholder="e.g. 2025" />
+      </label>
+      <label>Market cap
+        <input name="market_cap" placeholder="e.g. 5000000000" />
+      </label>
+      <label>Direct subsidiaries count
+        <input name="direct_subsidiaries_count" placeholder="e.g. 10" />
+      </label>
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction is defined %}
+      <div class="result">Prediction: <strong>{{ prediction }}</strong></div>
+    {% endif %}
+    {% if error is defined %}
+      <div class="error">Error: {{ error }}</div>
+    {% endif %}
+  </body>
+</html>
